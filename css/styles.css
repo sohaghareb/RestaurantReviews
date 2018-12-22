@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
-
+*{
+  margin: 0;
+  padding: 0;
+}
 body,td,th,p{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
@@ -142,6 +145,7 @@ nav h1 a {
 #restaurants-list li {
   background-color: #fff;
   border: 2px solid #ccc;
+  border-radius: 25px 0;
   font-family: Arial,sans-serif;
   margin: 0 auto;
   margin-top: 1%;
@@ -208,7 +212,7 @@ nav h1 a {
 .inside #footer {
   bottom: 0;
   position: absolute;
-  width: 50%;
+  width: calc(50% - 50px);;
 }
 #restaurant-name {
   color: #f18200;
@@ -222,7 +226,7 @@ nav h1 a {
 }
 #restaurant-img {
   width: 90%;
-  border-radius: 25px;
+  border-radius: 25px 0;
 }
 #restaurant-address {
   font-size: 12pt;
@@ -263,20 +267,47 @@ nav h1 a {
 #reviews-list li {
   background-color: #fff;
   border: 2px solid #f3f3f3;
-  border-radius: 25px;
+  border-radius: 25px 0;
   display: block;
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
-  padding: 15 20px 20px;
   position: relative;
   width: 85%;
 }
 #reviews-list li p {
-  margin: 0 0 10px;
+  margin: 10px;
 }
 #restaurant-hours td {
   color: #666;
+}
+
+.review-name {
+  color: white;
+  font-weight: bold;
+}
+
+.review-date {
+  color: gray;
+  float: right;
+}
+
+.review-name, .review-date {
+  display: inline-block;
+}
+
+.review-header{
+  background: black;
+  padding: 15px 15px 0;
+}
+
+.review-rating {
+  color: white;
+  background-color: orange;
+  width: 20%;
+  text-align: center;
+  border-radius: 12px;
+  text-transform: uppercase;
 }
 
 /* Media Queries */
@@ -291,15 +322,11 @@ nav h1 a {
     width: 100%;
   }
 }
-@media only screen and (min-width: 640px){
+@media only screen and (max-width: 640px){
   .inside #map-container {
       position: unset;
       height: 400px; 
       width: 100%;
-  }
-
-  .inside header{
-      position: unset;
   }
 
   .inside #restaurant-container{
@@ -316,12 +343,8 @@ nav h1 a {
       margin-left: 5%;
   }
 
-  /* .inside #footer {
-    width: 100%;
-  } */
-
   #restaurant-hours{
-    display: inline;
+    display: inline-block;
   }
 
   #reviews-container h2 {
