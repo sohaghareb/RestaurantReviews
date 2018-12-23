@@ -35,24 +35,10 @@ self.addEventListener('activate', function (event) {
 });
 
 //Cache all fetch requests 
-self.addEventListener('fetch', function (event) {
-    console.log('Handling fetch event for', event.request.url);
-
+self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.match(event.request).then(function (response) {
-            if (response) {
-                console.log('found a match');
-                return response;
-            }
-            //no response in the chache =>go and fetch
-            return fetch(event.request).then(function (response) {
-                // got the response from network
-                console.log('go and fetch');
-                return response;
-            }).catch(function (error) {
-                // cannot fetch
-                throw error;
-            });
-        })
+      caches.match(event.request).then(function(response) {
+        return response || fetch(event.request);
+      })
     );
-}); 
+  }); 
