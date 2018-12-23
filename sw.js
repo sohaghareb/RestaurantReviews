@@ -3,7 +3,8 @@ var urlsToCache = [
     '/',
     '/css/styles.css',
     '/js/main.js',
-    '/js/restaurant_info.js'
+    '/js/restaurant_info.js',
+    '/js/dbhelper.js'
 ];
 // First I need to install Service worker
 self.addEventListener('install', function (event) {
@@ -40,19 +41,16 @@ self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function (response) {
             if (response) {
-                console.log('Found response in cache:', response);
-
+                console.log('found a match');
                 return response;
             }
-            console.log('No response found in cache. About to fetch from network...');
-
+            //no response in the chache =>go and fetch
             return fetch(event.request).then(function (response) {
-                console.log('Response from network is:', response);
-
+                // got the response from network
+                console.log('go and fetch');
                 return response;
             }).catch(function (error) {
-                console.error('Fetching failed:', error);
-
+                // cannot fetch
                 throw error;
             });
         })
